@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TikTok 認可コールバック</title>
+<style>
+ body{font-family:system-ui,"Yu Gothic UI",sans-serif;max-width:640px;margin:60px auto;padding:0 20px;text-align:center;color:#222}
+ code{display:block;word-break:break-all;background:#f2f2f2;padding:16px;border-radius:10px;margin:18px 0;font-size:1.1rem}
+ button{padding:10px 18px;border:0;border-radius:8px;background:#2A1B3D;color:#fff;font-size:1rem;cursor:pointer}
+</style></head><body>
+<h1>認可コールバック</h1>
+<p id="msg">code を取得中…</p>
+<code id="code"></code>
+<button id="cp" style="display:none" onclick="navigator.clipboard.writeText(document.getElementById('code').textContent)">codeをコピー</button>
+<p id="hint" style="color:#666"></p>
+<script>
+ var q=new URLSearchParams(location.search), code=q.get('code'), err=q.get('error');
+ if(code){document.getElementById('msg').textContent='この code をコピーして貼り付けてください:';
+  document.getElementById('code').textContent=code;
+  document.getElementById('cp').style.display='inline-block';
+  document.getElementById('hint').textContent='（このページのURL全体のコピーでもOK）';}
+ else{document.getElementById('msg').textContent=err?('エラー: '+err):'code が見つかりません';}
+</script>
+</body></html>
